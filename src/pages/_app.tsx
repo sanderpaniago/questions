@@ -1,18 +1,30 @@
 import  Head  from 'next/head'
-import Layout from '../components/Layout'
-import { ExemploProvider } from '../context/ExemploContext'
-import '../styles/globals.css'
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+import {ThemeProvider, createMuiTheme, makeStyles} from "@material-ui/core"
+
+import { QuestionProvider } from '../context/QuestionContext'
+
 
 function MyApp({ Component, pageProps }) {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#0466C9'
+      }
+    }
+  })
+
   return(
-    <ExemploProvider>
+    <QuestionProvider>
       <Head>
         <title>Exemplo</title>
       </Head>
-      <Layout>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-      </Layout>
-    </ExemploProvider>
+      </ThemeProvider>
+    </QuestionProvider>
   ) 
 }
 
