@@ -6,12 +6,12 @@ Configuração do ambiente que utilizo para Front-end, o projeto tem a configura
 
 esse projeto utiliza:
 
-![Next.js](https://img.shields.io/badge/-Next.js-000000?&logo=next.js&logoColor=FFFFFF) ![Typescript](https://img.shields.io/badge/-typescript-3178C6?&logo=typescript&logoColor=FFFFFF) ![Docker](https://img.shields.io/badge/-Docker-2496ED?&logo=docker&logoColor=FFFFFF)
+![Next.js](https://img.shields.io/badge/-Next.js-000000?&logo=next.js&logoColor=FFFFFF) ![Typescript](https://img.shields.io/badge/-typescript-3178C6?&logo=typescript&logoColor=FFFFFF)
 
 
 ## Pré-requisitos:
 
-Você procisa do **NodeJs** e um gerenciador de dependencias(**NPM ou YARN**) em sua maquina. Caso queria executar em um container Docker ira necessitar o **Docker e docker-compose**
+Você procisa do **NodeJs** e um gerenciador de dependencias(**NPM ou YARN**) em sua maquina.
 
 ```sh
 // instalando as dependencias:
@@ -23,14 +23,6 @@ yarn install
 npm dev
 // ou
 yarn dev 
-```
-Com o docker
-```sh
-npm install
-// ou 
-yarn install
-
-docker-compose -d up
 ```
 
 
