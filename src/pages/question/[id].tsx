@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     }
 })
 
-export default function Question() {
+export default function Question({questions}) {
     
     const router = useRouter()
 
@@ -36,8 +36,6 @@ export default function Question() {
     const params = router.query
 
     const id = Number(params.id)
-
-    const {questions} = useContext(QuestionContext)
 
     const [question,setQuestion] = useState([])
 
@@ -175,4 +173,15 @@ export default function Question() {
             </Container>
         </Box>
     )
+}
+
+export async function getServerSideProps(context) {
+
+    const {questions} = useContext(QuestionContext)
+
+    return { 
+        props: {
+            questions
+        }
+    }
 }
