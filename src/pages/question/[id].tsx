@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     }
 })
 
-export default function Question({questions}) {
+export default function Question() {
     
     const router = useRouter()
 
@@ -36,6 +36,8 @@ export default function Question({questions}) {
     const params = router.query
 
     const id = Number(params.id)
+
+    const {questions} = useContext(QuestionContext)
 
     const [question,setQuestion] = useState([])
 
@@ -51,7 +53,7 @@ export default function Question({questions}) {
         questionOfStorage[id].opts = question
         localStorage.setItem('questions', JSON.stringify(questionOfStorage))
         resetForm({})
-        if (id < questions.length - 1) {
+        if (id < questions?.length - 1) {
             return router.push(`/question/${id + 1}`)
         }
 
@@ -59,7 +61,7 @@ export default function Question({questions}) {
     }
 
     useEffect(() => {
-        const newQuestions = [...questions[id].incorrect_answers, questions[id].correct_answer]
+        const newQuestions = [...questions[id]?.incorrect_answers, questions[id]?.correct_answer]
 
         function randomArray() {
             newQuestions.sort(()=> Math.random() - 0.5)
@@ -88,7 +90,7 @@ export default function Question({questions}) {
                         <img src="/back.svg" alt="" />
                     </a>
                 </Link>
-                <Typography>{questions[id].category}</Typography>
+                <Typography>{questions[id]?.category}</Typography>
                 <Box></Box>
             </Box>
             <Container maxWidth="sm">
@@ -104,7 +106,7 @@ export default function Question({questions}) {
                                 justifyContent='center'
                                 gridGap='16px'
                                 >
-                                {questions.map((item, index)=> {
+                                {questions?.map((item, index)=> {
                                     if(index > id -1  && index < id + 5 ) {
                                         return(
                                             <Box 
@@ -133,13 +135,13 @@ export default function Question({questions}) {
                                     borderRadius='8px'
                                     mb='16px'
                                     mt='27px'
-                                    >{questions[id].difficulty}</Box>
-                                <Typography variant='h6' align='center' dangerouslySetInnerHTML={{__html: questions[id].question}}></Typography>
+                                    >{questions[id]?.difficulty}</Box>
+                                <Typography variant='h6' align='center' dangerouslySetInnerHTML={{__html: questions[id]?.question}}></Typography>
 
                                 
 
                                     <Box mt='24px' width='100%'>
-                                    {question.map((item,index) => {
+                                    {question?.map((item,index) => {
                                         return(
                                             <Box 
                                             component='label'
@@ -173,15 +175,4 @@ export default function Question({questions}) {
             </Container>
         </Box>
     )
-}
-
-export async function getServerSideProps(context) {
-
-    const {questions} = useContext(QuestionContext)
-
-    return { 
-        props: {
-            questions
-        }
-    }
 }
