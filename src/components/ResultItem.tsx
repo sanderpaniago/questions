@@ -40,7 +40,7 @@ export default function ResultItem({question, key}) {
                             bgcolor='#383D6E'
                             borderRadius='8px'
                             className={ question.correctSelect && question.correct_answer === item ? classes.correct : (
-                                question.selectResponse === item ? classes.error : classes.opacity
+                                question.selectResponse === item ? classes.error : (question.correct_answer === item ? `${classes.correct} ${classes.opacity}` : classes.opacity)
                             )}
                             mb='24px'
                         >
